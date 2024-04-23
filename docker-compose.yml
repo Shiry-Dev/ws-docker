@@ -1,0 +1,43 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: example-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: MYSQL_DATABASE_NAME
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    command: --sql-mode=""
+    networks:
+      - db-network 
+
+  # GUI 
+  # adminer:
+  #   image: adminer
+  #   container_name: of-latam-dir-adminer
+  #   ports:
+  #     - "8086:8080"
+  #   networks:
+  #     - db-network 
+
+  # MIGRATION
+  # flyway:
+  #   image: flyway/flyway:latest
+  #   container_name: example-flyway-migration
+  #   command: -locations=filesystem:/flyway/sql -connectRetries=60 -url=jdbc:mysql://mysql:3306/MYSQL_DATABASE_NAME?allowPublicKeyRetrieval=true&useSSL=false -user=root -password=root_password migrate
+  #   volumes:
+  #     - ./scripts:/flyway/sql
+  #   depends_on:
+  #     - mysql
+  #   networks:
+  #     - db-network 
+
+volumes:
+  mysql-data:
+  
+networks: 
+  db-network:
+    driver: bridge

@@ -49,3 +49,6 @@
 
 `docker-compose down`
 - para os containers inicializados do arquivo docker-compose.yml
+
+`docker-compose up flyway`
+- atualizar migrações do flyway /scripts
