@@ -14,6 +14,16 @@ services:
     networks:
       - db-network 
 
+  # postgres:
+  #   image: postgres:14.4-alpine
+  #   container_name: example-postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: root_password
+  #     POSTGRES_PASSWORD: POSTGRES_PASSWORD
+  #   ports:
+  #     - "5432:5432"
+
   # GUI 
   # adminer:
   #   image: adminer
